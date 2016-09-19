@@ -270,3 +270,13 @@ class NpyFrameWise(HandlerBase):
 
     def __call__(self, frame_no):
         return self._data[frame_no]
+
+
+class TiffHandler(HandlerBase):
+    specs = {'TIFF'} | HandlerBase.specs
+
+    def __init__(self, name):
+        self._name = name
+
+    def __call__(self):
+        return tifffile.imread(self._name)
